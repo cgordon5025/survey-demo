@@ -1,6 +1,7 @@
 const { Schema, model } = require('mongoose');
 const bcrypt = require('bcrypt')
-
+// const Response = require('./Response')
+// const ResponseSchema = require('./Response')
 const userSchema = new Schema({
     username: {
         type: String,
@@ -17,7 +18,10 @@ const userSchema = new Schema({
         type: String,
         required: true,
     },
-    surveys: [surverySchema],
+    responses: [{
+        type: String,
+        required: true
+    }]
 },
     {
         toJSON: {
@@ -41,3 +45,5 @@ userSchema.methods.isCorrectPassword = async function (password) {
 const User = model('User', userSchema)
 
 module.exports = User
+
+    // surveys: [surverySchema],
